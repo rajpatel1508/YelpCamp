@@ -25,7 +25,7 @@ const { isloggedin } = require('./middleware');
 const mongoSanitize = require('express-mongo-sanitize');
 const { options } = require('joi');
 const mongoDBStore = require('connect-mongo');
-const dburl = process.env.DB_URL;
+const dburl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
 // const dburl = 'mongodb://localhost:27017/yelp-camp';
 mongoose.connect(dburl)
     .then(() => {
@@ -140,6 +140,8 @@ app.use((err, req, res, next) => {
     res.status(statuscode).render('error', { err });
 })
 
-app.listen(3000, () => {
-    console.log("On port 3000!");
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+    console.log(`On port ${port}`);
 }) 
