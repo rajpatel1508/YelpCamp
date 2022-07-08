@@ -25,8 +25,8 @@ const { isloggedin } = require('./middleware');
 const mongoSanitize = require('express-mongo-sanitize');
 const { options } = require('joi');
 const mongoDBStore = require('connect-mongo');
-// const dburl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
-const dburl = 'mongodb://localhost:27017/yelp-camp';
+const dburl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
+
 mongoose.connect(dburl)
     .then(() => {
         console.log("Mongo Connection open!!");
